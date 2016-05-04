@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">DoubanExample</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="drawer_open">open</string>
+    <string name="drawer_close">close</string>
+
+    <string name="press_again_exit_app">再按一次退回程序</string>
+    <string name="default_search_keyword">花千骨</string>
+
+</resources>
