@@ -61,4 +61,6 @@ dependencies {
     compile 'com.google.android.agera:rvadapter:1.0.0-rc2'
     compile 'com.jakewharton.timber:timber:4.1.2'
     compile 'de.hdodenhof:circleimageview:2.0.0'
+    compile 'com.google.code.gson:gson:2.6.2'
+    compile 'com.orhanobut:logger:1.11'
 }

@@ -1,5 +1,13 @@
 package meizu.hon.doubanexample.net;
 
+import java.util.Map;
+
+import meizu.hon.doubanexample.model.BookModel;
+import meizu.hon.doubanexample.model.MovieModel;
+import retrofit2.Call;
+import retrofit2.http.GET;
+import retrofit2.http.QueryMap;
+
 /**
  * @author liuhehong
  * @project FABHideAndShowDemo
@@ -10,5 +18,10 @@ package meizu.hon.doubanexample.net;
 public interface ApiService {
 
     //GET  https://api.douban.com/v2/book/search
+    @GET("book/search")
+    Call<BookModel> getBooks(@QueryMap Map<String, String> map);
+
+    @GET("movie/top250")
+    Call<MovieModel> getMovie(@QueryMap Map<String, Object> map);
 
 }

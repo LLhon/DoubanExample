@@ -54,7 +54,7 @@ public class MainActivity extends BaseActivity<ViewModel, ActivityMainBinding> i
 
     private void switchToDouban() {
         replaceFragment(R.id.frame_content, new DoubanFragment(), "douban");
-        getBinding().appbar.tvToolbarTitle.setText("Douban");
+        setTitle("Douban");
     }
 
     private void switchToGithub() {
