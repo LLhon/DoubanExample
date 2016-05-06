@@ -2,6 +2,9 @@ package meizu.hon.doubanexample.viewmodel;
 
 import android.content.Context;
 import android.databinding.BindingAdapter;
+import android.databinding.BindingConversion;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.widget.ImageView;
 
@@ -9,7 +12,6 @@ import com.bumptech.glide.Glide;
 
 import java.util.List;
 
-import meizu.hon.doubanexample.R;
 import meizu.hon.doubanexample.model.MovieModel;
 
 /**
@@ -45,7 +47,7 @@ public class MovieViewModel extends ViewModel {
 
     public String getDesc() {
         return "演员: " + mSubjectsEntity.getDirectors().get(0).getName() + "\n上映日期: " + mSubjectsEntity.getYear()
-                + "\n收藏人数: " + mSubjectsEntity.getCollect_count() + "\n标签: " + listToString(mSubjectsEntity.getGenres());
+                + "\n评级: " + mSubjectsEntity.getRating().getAverage() +"\n收藏人数: " + mSubjectsEntity.getCollect_count() + "\n标签: " + listToString(mSubjectsEntity.getGenres());
     }
 
     private String listToString(List<String> list) {
@@ -60,17 +62,22 @@ public class MovieViewModel extends ViewModel {
         return sb.toString();
     }
 
-    @BindingAdapter({"bind:imgUrl"})
-    public static void loadImage(ImageView view, String imgUrl) {
+    @BindingAdapter(value = {"bind:imgUrl", "placeHolder"}, requireAll = false)
+    public static void loadImage(ImageView view, String imgUrl, Drawable placeHolder) {
         Glide.with(mContext)
                 .load(imgUrl)
                 .centerCrop()
                 .crossFade()
-                .placeholder(R.mipmap.ic_launcher)
+                .placeholder(placeHolder)
                 .into(view);
     }
 
-    @Override void destory() {
+    @BindingConversion
+    public static Drawable colorToDrawable(int color) {
+        return new ColorDrawable(color);
+    }
+
+    @Override public void destory() {
 
     }
 }

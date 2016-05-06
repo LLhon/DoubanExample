@@ -5,8 +5,8 @@
     <color name="colorAccent">#FF4081</color>
     <color name="primary_light">#B2DFDB</color>
 
-    <color name="progress_bg">#f5d0f2</color>
-    <color name="progress_color">#fa48e8</color>
+    <color name="progress_bg">#97e3f1</color>
+    <color name="progress_color">#00897b</color>
 
     <color name="primary_text">#212121</color>
     <color name="secondary_text">#727272</color>
@@ -15,4 +15,6 @@
 
     <color name="window_background">#FFF5F5F5</color>
     <color name="tab_bgcolor">#eeeeee</color>
+
+
 </resources>

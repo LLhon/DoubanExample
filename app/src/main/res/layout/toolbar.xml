@@ -19,7 +19,6 @@
             app:navigationIcon="?attr/homeAsUpIndicator"
             android:background="?attr/colorPrimary"
             android:minHeight="?attr/actionBarSize"
-
             app:popupTheme="@style/AppTheme.NoActionBar.PopupOverlay"
             app:theme="@style/AppTheme.NoActionBar.AppBarOverlay">
 

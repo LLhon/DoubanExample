@@ -59,12 +59,12 @@ public class MainActivity extends BaseActivity<ViewModel, ActivityMainBinding> i
 
     private void switchToGithub() {
         replaceFragment(R.id.frame_content, new GithubFragment(), "github");
-        getBinding().appbar.tvToolbarTitle.setText("Github");
+        setTitle("Github");
     }
 
     private void switchToAbout() {
         replaceFragment(R.id.frame_content, new AboutFragment(), "about");
-        getBinding().appbar.tvToolbarTitle.setText("About");
+        setTitle("About");
     }
 
     @Override public void setSelectedFragment(BackHandledFragment backHandledFragment) {

@@ -28,5 +28,5 @@ public abstract class ViewModel extends BaseObservable {
     }
     // ... InstanceState in ViewModel
 
-    abstract void destory();
+    public abstract void destory();
 }

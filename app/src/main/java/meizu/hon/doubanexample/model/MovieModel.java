@@ -1,5 +1,9 @@
 package meizu.hon.doubanexample.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -9,7 +13,7 @@ import java.util.List;
  * @Date 2016/5/5 15:07
  * @Des
  */
-public class MovieModel {
+public class MovieModel implements Parcelable {
 
 
     /**
@@ -81,7 +85,7 @@ public class MovieModel {
         this.subjects = subjects;
     }
 
-    public static class SubjectsEntity {
+    public static class SubjectsEntity implements Parcelable {
         /**
          * max : 10
          * average : 9.6
@@ -218,7 +222,7 @@ public class MovieModel {
             this.directors = directors;
         }
 
-        public static class RatingEntity {
+        public static class RatingEntity implements Parcelable {
             private int    max;
             private double average;
             private String stars;
@@ -255,9 +259,40 @@ public class MovieModel {
             public void setMin(int min) {
                 this.min = min;
             }
+
+            @Override public int describeContents() {
+                return 0;
+            }
+
+            @Override public void writeToParcel(Parcel dest, int flags) {
+                dest.writeInt(this.max);
+                dest.writeDouble(this.average);
+                dest.writeString(this.stars);
+                dest.writeInt(this.min);
+            }
+
+            public RatingEntity() {
+            }
+
+            protected RatingEntity(Parcel in) {
+                this.max = in.readInt();
+                this.average = in.readDouble();
+                this.stars = in.readString();
+                this.min = in.readInt();
+            }
+
+            public static final Creator<RatingEntity> CREATOR = new Creator<RatingEntity>() {
+                @Override public RatingEntity createFromParcel(Parcel source) {
+                    return new RatingEntity(source);
+                }
+
+                @Override public RatingEntity[] newArray(int size) {
+                    return new RatingEntity[size];
+                }
+            };
         }
 
-        public static class ImagesEntity {
+        public static class ImagesEntity implements Parcelable {
             private String small;
             private String large;
             private String medium;
@@ -285,9 +320,38 @@ public class MovieModel {
             public void setMedium(String medium) {
                 this.medium = medium;
             }
+
+            @Override public int describeContents() {
+                return 0;
+            }
+
+            @Override public void writeToParcel(Parcel dest, int flags) {
+                dest.writeString(this.small);
+                dest.writeString(this.large);
+                dest.writeString(this.medium);
+            }
+
+            public ImagesEntity() {
+            }
+
+            protected ImagesEntity(Parcel in) {
+                this.small = in.readString();
+                this.large = in.readString();
+                this.medium = in.readString();
+            }
+
+            public static final Creator<ImagesEntity> CREATOR = new Creator<ImagesEntity>() {
+                @Override public ImagesEntity createFromParcel(Parcel source) {
+                    return new ImagesEntity(source);
+                }
+
+                @Override public ImagesEntity[] newArray(int size) {
+                    return new ImagesEntity[size];
+                }
+            };
         }
 
-        public static class CastsEntity {
+        public static class CastsEntity implements Parcelable {
             private String alt;
             /**
              * small : https://img3.doubanio.com/img/celebrity/small/17525.jpg
@@ -331,7 +395,7 @@ public class MovieModel {
                 this.id = id;
             }
 
-            public static class AvatarsEntity {
+            public static class AvatarsEntity implements Parcelable {
                 private String small;
                 private String large;
                 private String medium;
@@ -359,10 +423,70 @@ public class MovieModel {
                 public void setMedium(String medium) {
                     this.medium = medium;
                 }
+
+                @Override public int describeContents() {
+                    return 0;
+                }
+
+                @Override public void writeToParcel(Parcel dest, int flags) {
+                    dest.writeString(this.small);
+                    dest.writeString(this.large);
+                    dest.writeString(this.medium);
+                }
+
+                public AvatarsEntity() {
+                }
+
+                protected AvatarsEntity(Parcel in) {
+                    this.small = in.readString();
+                    this.large = in.readString();
+                    this.medium = in.readString();
+                }
+
+                public static final Creator<AvatarsEntity> CREATOR = new Creator<AvatarsEntity>() {
+                    @Override public AvatarsEntity createFromParcel(Parcel source) {
+                        return new AvatarsEntity(source);
+                    }
+
+                    @Override public AvatarsEntity[] newArray(int size) {
+                        return new AvatarsEntity[size];
+                    }
+                };
             }
+
+            @Override public int describeContents() {
+                return 0;
+            }
+
+            @Override public void writeToParcel(Parcel dest, int flags) {
+                dest.writeString(this.alt);
+                dest.writeParcelable(this.avatars, flags);
+                dest.writeString(this.name);
+                dest.writeString(this.id);
+            }
+
+            public CastsEntity() {
+            }
+
+            protected CastsEntity(Parcel in) {
+                this.alt = in.readString();
+                this.avatars = in.readParcelable(AvatarsEntity.class.getClassLoader());
+                this.name = in.readString();
+                this.id = in.readString();
+            }
+
+            public static final Creator<CastsEntity> CREATOR = new Creator<CastsEntity>() {
+                @Override public CastsEntity createFromParcel(Parcel source) {
+                    return new CastsEntity(source);
+                }
+
+                @Override public CastsEntity[] newArray(int size) {
+                    return new CastsEntity[size];
+                }
+            };
         }
 
-        public static class DirectorsEntity {
+        public static class DirectorsEntity implements Parcelable {
             private String alt;
             /**
              * small : https://img3.doubanio.com/img/celebrity/small/230.jpg
@@ -406,7 +530,7 @@ public class MovieModel {
                 this.id = id;
             }
 
-            public static class AvatarsEntity {
+            public static class AvatarsEntity implements Parcelable {
                 private String small;
                 private String large;
                 private String medium;
@@ -434,8 +558,117 @@ public class MovieModel {
                 public void setMedium(String medium) {
                     this.medium = medium;
                 }
+
+                @Override public int describeContents() {
+                    return 0;
+                }
+
+                @Override public void writeToParcel(Parcel dest, int flags) {
+                    dest.writeString(this.small);
+                    dest.writeString(this.large);
+                    dest.writeString(this.medium);
+                }
+
+                public AvatarsEntity() {
+                }
+
+                protected AvatarsEntity(Parcel in) {
+                    this.small = in.readString();
+                    this.large = in.readString();
+                    this.medium = in.readString();
+                }
+
+                public static final Creator<AvatarsEntity> CREATOR = new Creator<AvatarsEntity>() {
+                    @Override public AvatarsEntity createFromParcel(Parcel source) {
+                        return new AvatarsEntity(source);
+                    }
+
+                    @Override public AvatarsEntity[] newArray(int size) {
+                        return new AvatarsEntity[size];
+                    }
+                };
             }
+
+            @Override public int describeContents() {
+                return 0;
+            }
+
+            @Override public void writeToParcel(Parcel dest, int flags) {
+                dest.writeString(this.alt);
+                dest.writeParcelable(this.avatars, flags);
+                dest.writeString(this.name);
+                dest.writeString(this.id);
+            }
+
+            public DirectorsEntity() {
+            }
+
+            protected DirectorsEntity(Parcel in) {
+                this.alt = in.readString();
+                this.avatars = in.readParcelable(AvatarsEntity.class.getClassLoader());
+                this.name = in.readString();
+                this.id = in.readString();
+            }
+
+            public static final Creator<DirectorsEntity> CREATOR = new Creator<DirectorsEntity>() {
+                @Override public DirectorsEntity createFromParcel(Parcel source) {
+                    return new DirectorsEntity(source);
+                }
+
+                @Override public DirectorsEntity[] newArray(int size) {
+                    return new DirectorsEntity[size];
+                }
+            };
         }
+
+        @Override public int describeContents() {
+            return 0;
+        }
+
+        @Override public void writeToParcel(Parcel dest, int flags) {
+            dest.writeParcelable(this.rating, flags);
+            dest.writeString(this.title);
+            dest.writeInt(this.collect_count);
+            dest.writeString(this.original_title);
+            dest.writeString(this.subtype);
+            dest.writeString(this.year);
+            dest.writeParcelable(this.images, flags);
+            dest.writeString(this.alt);
+            dest.writeString(this.id);
+            dest.writeStringList(this.genres);
+            dest.writeList(this.casts);
+            dest.writeList(this.directors);
+        }
+
+        public SubjectsEntity() {
+        }
+
+        protected SubjectsEntity(Parcel in) {
+            this.rating = in.readParcelable(RatingEntity.class.getClassLoader());
+            this.title = in.readString();
+            this.collect_count = in.readInt();
+            this.original_title = in.readString();
+            this.subtype = in.readString();
+            this.year = in.readString();
+            this.images = in.readParcelable(ImagesEntity.class.getClassLoader());
+            this.alt = in.readString();
+            this.id = in.readString();
+            this.genres = in.createStringArrayList();
+            this.casts = new ArrayList<CastsEntity>();
+            in.readList(this.casts, CastsEntity.class.getClassLoader());
+            this.directors = new ArrayList<DirectorsEntity>();
+            in.readList(this.directors, DirectorsEntity.class.getClassLoader());
+        }
+
+        public static final Creator<SubjectsEntity> CREATOR = new Creator<SubjectsEntity>() {
+            @Override public SubjectsEntity createFromParcel(Parcel source) {
+                return new SubjectsEntity(source);
+            }
+
+            @Override public SubjectsEntity[] newArray(int size) {
+                return new SubjectsEntity[size];
+            }
+        };
     }
 
     @Override public String toString() {
@@ -447,4 +680,38 @@ public class MovieModel {
                 ", subjects=" + subjects +
                 '}';
     }
+
+    @Override public int describeContents() {
+        return 0;
+    }
+
+    @Override public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(this.count);
+        dest.writeInt(this.start);
+        dest.writeInt(this.total);
+        dest.writeString(this.title);
+        dest.writeList(this.subjects);
+    }
+
+    public MovieModel() {
+    }
+
+    protected MovieModel(Parcel in) {
+        this.count = in.readInt();
+        this.start = in.readInt();
+        this.total = in.readInt();
+        this.title = in.readString();
+        this.subjects = new ArrayList<SubjectsEntity>();
+        in.readList(this.subjects, SubjectsEntity.class.getClassLoader());
+    }
+
+    public static final Parcelable.Creator<MovieModel> CREATOR = new Parcelable.Creator<MovieModel>() {
+        @Override public MovieModel createFromParcel(Parcel source) {
+            return new MovieModel(source);
+        }
+
+        @Override public MovieModel[] newArray(int size) {
+            return new MovieModel[size];
+        }
+    };
 }

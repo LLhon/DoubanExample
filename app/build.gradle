@@ -62,5 +62,5 @@ dependencies {
     compile 'com.jakewharton.timber:timber:4.1.2'
     compile 'de.hdodenhof:circleimageview:2.0.0'
     compile 'com.google.code.gson:gson:2.6.2'
-    compile 'com.orhanobut:logger:1.11'
+    compile 'me.zhanghai.android.materialprogressbar:library:1.1.6'
 }

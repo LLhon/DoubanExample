@@ -40,7 +40,7 @@ import meizu.hon.doubanexample.utils.UIUtils;
 import meizu.hon.doubanexample.viewmodel.BookViewModel;
 import meizu.hon.doubanexample.viewmodel.MovieViewModel;
 import meizu.hon.doubanexample.viewmodel.ViewModel;
-import meizu.hon.doubanexample.widget.DividerItemDecoration;
+import meizu.hon.doubanexample.widget.SpaceItemDecoration;
 
 /**
  * @Author liuhehong
@@ -77,7 +77,7 @@ public class DoubanFragment extends BaseFragment<ViewModel, FragmentDoubanBindin
 
     @Override protected void initView() {
         getBinding().recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
-        DividerItemDecoration itemDecoration = new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL_LIST);
+        SpaceItemDecoration itemDecoration = new SpaceItemDecoration(getActivity(), SpaceItemDecoration.VERTICAL_LIST);
         itemDecoration.setSize(DensityUtils.dp2px(getActivity(), 12));
         getBinding().recyclerView.addItemDecoration(itemDecoration);
     }
@@ -207,21 +207,20 @@ public class DoubanFragment extends BaseFragment<ViewModel, FragmentDoubanBindin
             mItemView = holder.itemView;
             mBinding = DataBindingUtil.bind(mItemView);
             bindMovie(data.get(index));
-            bindClick();
+            bindClick(data.get(index));
         }
 
         void bindMovie(MovieModel.SubjectsEntity subjectsEntity) {
             if (mBinding.getViewModel() == null) {
-                Log.e("tag", "1");
                 mBinding.setViewModel(new MovieViewModel(mItemView.getContext(), subjectsEntity));
             }else {
-                Log.e("tag", "2");
                 mBinding.getViewModel().setMovie(subjectsEntity);
             }
+            mBinding.executePendingBindings();
         }
 
-        void bindClick() {
-            mItemView.setOnClickListener(v -> MovieDetailActivity.startActivity(mItemView.getContext()));
+        void bindClick(MovieModel.SubjectsEntity subjectsEntity) {
+            mItemView.setOnClickListener(v -> MovieDetailActivity.startActivity(mItemView.getContext(), subjectsEntity));
         }
     }
 

@@ -7,6 +7,7 @@ import com.google.android.agera.Result;
 import com.google.android.agera.Supplier;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.orhanobut.logger.Logger;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -59,7 +60,7 @@ public class MovieSupplier implements Supplier<Result<List<MovieModel.SubjectsEn
     private List<MovieModel.SubjectsEntity> getMovieByRetrofit() {
         Map<String, Object> map = new HashMap<>();
         map.put("start", 0);
-        map.put("count", 30);
+        map.put("count", 50);
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -67,7 +68,7 @@ public class MovieSupplier implements Supplier<Result<List<MovieModel.SubjectsEn
         ApiService service = retrofit.create(ApiService.class);
         try {
             retrofit2.Response<MovieModel> response = service.getMovie(map).execute();
-            Log.e("----Json----", new Gson().toJson(response.body()));
+            Logger.e("----Json----" + new Gson().toJson(response.body()));
             return response.body().getSubjects();
         } catch (IOException e) {
             e.printStackTrace();
@@ -78,7 +79,6 @@ public class MovieSupplier implements Supplier<Result<List<MovieModel.SubjectsEn
     @NonNull @Override public Result<List<MovieModel.SubjectsEntity>> get() {
         List<MovieModel.SubjectsEntity> subjectsEntities = getMovieByRetrofit();
 //        getMovie();
-        Log.e("Name: ", subjectsEntities.get(0).getDirectors().get(0).getName());
         if (subjectsEntities == null) {
             return Result.failure();
         }else {

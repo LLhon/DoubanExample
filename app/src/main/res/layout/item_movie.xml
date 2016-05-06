@@ -27,7 +27,10 @@
                 android:layout_width="109dp"
                 android:layout_height="135dp"
                 android:transitionName="@string/transition_book_img"
-                app:imgUrl="@{viewModel.img}"/>
+                app:imgUrl="@{viewModel.img}"
+                app:placeHolder="@{@drawable/ic_launcher}"/>
+
+            <!-- app:placeHolder="@{R.drawable.ic_launcher} 使用这个报错 R is missing it.-->
 
             <LinearLayout
                 android:layout_width="match_parent"

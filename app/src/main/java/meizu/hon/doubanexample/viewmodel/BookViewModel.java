@@ -69,7 +69,7 @@ public class BookViewModel extends ViewModel {
                 .into(view);
     }
 
-    @Override void destory() {
+    @Override public void destory() {
 
     }
 }
