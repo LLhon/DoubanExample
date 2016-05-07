@@ -20,9 +20,10 @@
             android:layout_height="wrap_content"
             android:layout_gravity="end|bottom"
             android:layout_margin="@dimen/fab_margin"
-            android:src="@android:drawable/ic_dialog_info"
+            android:src="@android:drawable/ic_btn_speak_now"
             app:fabSize="normal"
-            app:elevation="6dp"
+            app:rippleColor="@color/window_background"
+            app:elevation="8dp"
             app:borderWidth="0dp"
             app:pressedTranslationZ="12dp"
             app:layout_behavior="meizu.hon.doubanexample.widget.ScrollAwareFABBehavior"/>

@@ -21,7 +21,9 @@ public interface ApiService {
     @GET("book/search")
     Call<BookModel> getBooks(@QueryMap Map<String, String> map);
 
-    @GET("movie/top250")
+    //movie/top250
+    //movie/in_theaters
+    @GET("movie/in_theaters")
     Call<MovieModel> getMovie(@QueryMap Map<String, Object> map);
 
 }

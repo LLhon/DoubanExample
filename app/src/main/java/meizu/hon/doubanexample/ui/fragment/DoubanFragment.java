@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.google.android.agera.BaseObservable;
 import com.google.android.agera.Function;
 import com.google.android.agera.Receiver;
@@ -80,6 +81,7 @@ public class DoubanFragment extends BaseFragment<ViewModel, FragmentDoubanBindin
         SpaceItemDecoration itemDecoration = new SpaceItemDecoration(getActivity(), SpaceItemDecoration.VERTICAL_LIST);
         itemDecoration.setSize(DensityUtils.dp2px(getActivity(), 12));
         getBinding().recyclerView.addItemDecoration(itemDecoration);
+        getBinding().fab.setOnClickListener(v -> doSearchDialog());
     }
 
     @Override protected void initData(Bundle savedInstanceState) {
@@ -91,6 +93,13 @@ public class DoubanFragment extends BaseFragment<ViewModel, FragmentDoubanBindin
     @Override public void update() {
         getBinding().mpb.setVisibility(View.INVISIBLE);
         Log.e("update:", mMovieRepository.get().get(0).getTitle());
+    }
+
+    private void doSearchDialog() {
+        new MaterialDialog.Builder(getActivity())
+                .title("搜索")
+                .input("请输入关键字", "花千骨", (dialog, input) -> doSearch(input.toString()))
+                .show();
     }
 
     class SearchObservable extends BaseObservable {

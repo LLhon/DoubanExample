@@ -37,7 +37,7 @@ public class WebViewProgressBar extends View {
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(HEIGHT);
         paint.setAntiAlias(true);
-        paint.setColor(context.getResources().getColor(R.color.primary_light));
+        paint.setColor(context.getResources().getColor(R.color.colorAccent));
 //        paint.setShader(shader);
     }
     public void setProgress(int progress){

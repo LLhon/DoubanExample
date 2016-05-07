@@ -38,7 +38,7 @@ public class RetrofitFactory {
                             .cache(new Cache(context.getCacheDir(), Constant.CACHE_MAX_SIZE))
                             .addInterceptor((chain) -> {
                                 Request request = chain.request();  //拦截Request
-                                if (!UIUtils.isNetworkReachable(context)) {
+                                if (!UIUtils.checkNet(context)) {
                                     request = request.newBuilder()
                                             .cacheControl(CacheControl.FORCE_CACHE)  //无网络时只从缓存读取
                                             .build();
@@ -47,7 +47,7 @@ public class RetrofitFactory {
                                 }
                                 Response response = chain.proceed(request);  //拦截Response
                                 Logger.e(chain.request().toString()); // Request{method=POST, url=http://120.31.131.105:8012/WebService/DaDaTongService.asmx/Login, tag=null}
-                                if (UIUtils.isNetworkReachable(context)) {
+                                if (UIUtils.checkNet(context)) {
                                     int maxAge = 60 * 60; // 有网络时 设置缓存超时时间1个小时
                                     response.newBuilder()
                                             .removeHeader("Pragma")  //清除头信息，因为服务器如果不支持，会返回一些干扰信息，不清除下面无法生效

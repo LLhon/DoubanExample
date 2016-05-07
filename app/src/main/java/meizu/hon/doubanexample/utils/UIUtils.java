@@ -134,6 +134,10 @@ public class UIUtils {
         return manager.getDeviceId();
     }
 
+    /**
+     * 获取手机号码
+     * @return
+     */
     public static String getPhoneNumber() {
         TelephonyManager manager = (TelephonyManager) getContext().getSystemService(Context.TELEPHONY_SERVICE);
         return manager.getLine1Number();
@@ -154,7 +158,7 @@ public class UIUtils {
      * @param context
      * @return
      */
-    public static boolean isNetworkReachable(Context context) {
+    public static boolean checkNet(Context context) {
         ConnectivityManager manager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo info = manager.getActiveNetworkInfo();
         if (info == null) {
