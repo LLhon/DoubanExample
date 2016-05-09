@@ -2,6 +2,7 @@ package meizu.hon.doubanexample.rx;
 
 import meizu.hon.doubanexample.net.ServerException;
 import meizu.hon.doubanexample.utils.UIUtils;
+import retrofit2.adapter.rxjava.HttpException;
 import rx.Subscriber;
 
 /**
@@ -20,11 +21,16 @@ public abstract class RxSubscriber<T> extends Subscriber<T> {
         }
         if (e instanceof ServerException) {
             _onError(e.getMessage());
-        }
+        }else if (isHttp404(e)) {
+            _onError("The Page is 404");
             //更多异常处理
-        else {
+        }else {
             _onError("请求失败,请稍后重试...");
         }
+    }
+
+    private static boolean isHttp404(Throwable error) {
+        return error instanceof HttpException && ((HttpException)error).code() == 404;
     }
 
     @Override public void onNext(T t) {

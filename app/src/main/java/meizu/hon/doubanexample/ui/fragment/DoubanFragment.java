@@ -41,6 +41,7 @@ import meizu.hon.doubanexample.utils.UIUtils;
 import meizu.hon.doubanexample.viewmodel.BookViewModel;
 import meizu.hon.doubanexample.viewmodel.MovieViewModel;
 import meizu.hon.doubanexample.viewmodel.ViewModel;
+import meizu.hon.doubanexample.widget.RecyclerInsetsDecoration;
 import meizu.hon.doubanexample.widget.SpaceItemDecoration;
 
 /**
@@ -79,8 +80,9 @@ public class DoubanFragment extends BaseFragment<ViewModel, FragmentDoubanBindin
     @Override protected void initView() {
         getBinding().recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
         SpaceItemDecoration itemDecoration = new SpaceItemDecoration(getActivity(), SpaceItemDecoration.VERTICAL_LIST);
-        itemDecoration.setSize(DensityUtils.dp2px(getActivity(), 12));
-        getBinding().recyclerView.addItemDecoration(itemDecoration);
+        itemDecoration.setSize(DensityUtils.dp2px(getActivity(), 10));
+//        getBinding().recyclerView.addItemDecoration(itemDecoration);
+        getBinding().recyclerView.addItemDecoration(new RecyclerInsetsDecoration(getActivity()));
         getBinding().fab.setOnClickListener(v -> doSearchDialog());
     }
 

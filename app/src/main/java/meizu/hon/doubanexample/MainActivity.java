@@ -12,6 +12,7 @@ import meizu.hon.doubanexample.ui.fragment.AboutFragment;
 import meizu.hon.doubanexample.ui.fragment.BackHandledFragment;
 import meizu.hon.doubanexample.ui.fragment.DoubanFragment;
 import meizu.hon.doubanexample.ui.fragment.GithubFragment;
+import meizu.hon.doubanexample.ui.fragment.MusicFragment;
 import meizu.hon.doubanexample.viewmodel.ViewModel;
 
 public class MainActivity extends BaseActivity<ViewModel, ActivityMainBinding> implements BackHandledFragment.BackHandlerInterface {
@@ -39,6 +40,9 @@ public class MainActivity extends BaseActivity<ViewModel, ActivityMainBinding> i
                 case R.id.navi_item_douban:
                     switchToDouban();
                     break;
+                case R.id.navi_item_music:
+                    switchToMusic();
+                    break;
                 case R.id.navi_item_github:
                     switchToGithub();
                     break;
@@ -55,6 +59,11 @@ public class MainActivity extends BaseActivity<ViewModel, ActivityMainBinding> i
     private void switchToDouban() {
         replaceFragment(R.id.frame_content, new DoubanFragment(), "douban");
         setTitle("Douban");
+    }
+
+    private void switchToMusic() {
+        replaceFragment(R.id.frame_content, new MusicFragment(), "music");
+        setTitle("music");
     }
 
     private void switchToGithub() {

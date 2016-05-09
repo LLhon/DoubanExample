@@ -6,6 +6,9 @@
         <item android:id="@+id/navi_item_douban"
               android:title="douban"/>
 
+        <item android:id="@+id/navi_item_music"
+              android:title="music"/>
+
         <item android:id="@+id/navi_item_github"
               android:title="github"/>
 

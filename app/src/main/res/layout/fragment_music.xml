@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+        <variable name="viewModel" type="meizu.hon.doubanexample.viewmodel.MusicViewModel"/>
+    </data>
+
+    <FrameLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="@{viewModel.mRecyclerviewVisibility}"/>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|bottom"
+            android:layout_margin="@dimen/fab_margin"
+            android:src="@android:drawable/ic_btn_speak_now"
+            android:visibility="@{viewModel.mFabVisibility}"
+            android:onClick="@{viewModel.clickSearch}"
+            app:fabSize="normal"
+            app:rippleColor="@color/window_background"
+            app:elevation="8dp"
+            app:borderWidth="0dp"
+            app:pressedTranslationZ="12dp"
+            app:layout_behavior="meizu.hon.doubanexample.widget.ScrollAwareFABBehavior"/>
+
+        <me.zhanghai.android.materialprogressbar.MaterialProgressBar
+            android:id="@+id/mpb"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:visibility="@{viewModel.mProgressviewVisibility}"
+            app:mpb_progressStyle="horizontal"
+            app:mpb_tintMode="src_in"
+            style="@style/Widget.MaterialProgressBar.ProgressBar.Horizontal"/>
+
+        <TextView
+            android:id="@+id/tv_music"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@{viewModel.mErrorPageText}"
+            android:visibility="@{viewModel.mErrorPageVisibility}"/>
+
+        <!--<meizu.hon.doubanexample.widget.MaterialProgressBar
+            android:id="@+id/mpb"
+            android:layout_width="match_parent"
+            android:layout_height="8dp"
+            android:layout_gravity="center"
+            android:indeterminate="true"
+            android:visibility="visible"
+            app:backgroundColour="@color/progress_bg"
+            app:progressColour="@color/progress_color"
+            app:duration="2000"/>-->
+
+        <!--<android.support.design.widget.TabLayout
+            android:id="@+id/tabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:tabGravity="fill"/>
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        </android.support.v4.view.ViewPager>-->
+
+    </FrameLayout>
+
+</layout>
